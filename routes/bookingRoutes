@@ -1,0 +1,10 @@
+const express = require("express");
+const auth = require("../middleware/auth");
+const { bookBus, cancelBooking } = require("../controllers/bookingController");
+
+const router = express.Router();
+
+router.post("/", auth(["user"]), bookBus);
+router.delete("/:id", auth(["user"]), cancelBooking);
+
+module.exports = router;
